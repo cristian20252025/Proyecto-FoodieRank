@@ -1,0 +1,49 @@
+/* =============================
+   admin.css - Panel de administración
+   ============================= */
+
+   .admin-panel h1 {
+    color: var(--color-secondary);
+    margin: 2rem 0 1rem;
+    text-align: center;
+  }
+  
+  .admin-section {
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .inline-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .inline-form input {
+    flex: 1;
+    padding: 0.6rem;
+    border: 1px solid var(--color-gray);
+    border-radius: var(--radius);
+  }
+  
+  #categories-manage,
+  #pending-restaurants,
+  #users-list {
+    margin-top: 1rem;
+  }
+  
+  .admin-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--color-gray);
+  }
+  
+  .admin-card button {
+    margin-left: 0.5rem;
+  }
+  

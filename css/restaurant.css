@@ -1,0 +1,110 @@
+/* =============================
+   restaurant.css - Restaurantes
+   ============================= */
+
+   .list {
+    margin-top: 2rem;
+  }
+  
+  .search-box {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 1rem 0;
+  }
+  
+  .search-box input {
+    flex: 1;
+    padding: 0.6rem;
+    border: 1px solid var(--color-gray);
+    border-radius: var(--radius);
+  }
+  
+  .filters {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .filters select {
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-gray);
+  }
+  
+  /* Tarjetas de restaurantes */
+  .restaurant-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+  }
+  
+  .restaurant-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .restaurant-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  
+  .restaurant-info {
+    padding: 1rem;
+  }
+  
+  .restaurant-info h3 {
+    color: var(--color-secondary);
+  }
+  
+  .restaurant-info p {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  /* Detalle */
+  .restaurant-detail {
+    margin-top: 2rem;
+  }
+  
+  .detail-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    background: white;
+    padding: 1rem;
+    border-radius: var(--radius);
+  }
+  
+  .hero-img img {
+    width: 300px;
+    border-radius: var(--radius);
+  }
+  
+  .menu-and-reviews {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .reviews-col,
+  .menu-col {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .dishes-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-gray);
+  }
+  
+  .new-review form {
+    margin-bottom: 1rem;
+  }
+  
