@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Inicio - Reseñas y Rankings</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/restaurant.css" />
+</head>
+<body>
+  <header id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/img/logo.png" alt="Logo" class="logo" />
+        <span>RankingRestaurants</span>
+      </a>
+
+      <nav id="main-nav" class="nav">
+        <!-- Navbar será renderizado dinámicamente por /components/navbar.js o main.js -->
+        <ul id="nav-list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="restaurants.html">Restaurantes</a></li>
+          <li id="nav-auth"><a href="login.html">Iniciar sesión</a></li>
+        </ul>
+      </nav>
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Abrir menú">☰</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container">
+      <h1>Descubre y califica los mejores restaurantes</h1>
+      <p>Busca por categoría, calificación y lee reseñas reales.</p>
+      <div class="hero-actions">
+        <a class="btn" href="restaurants.html">Ver restaurantes</a>
+        <a class="btn btn-outline" href="register.html">Crear cuenta</a>
+      </div>
+    </section>
+
+    <section class="top-restaurants container" aria-labelledby="top-title">
+      <h2 id="top-title">Top recomendados</h2>
+      <div id="top-list" class="cards-grid">
+        <!-- JS: render top-ranked restaurants aquí (cards) -->
+      </div>
+    </section>
+
+    <section class="categories container" aria-labelledby="cat-title">
+      <h2 id="cat-title">Explorar por categoría</h2>
+      <div id="categories-list" class="chips">
+        <!-- JS: render categorías como chips / filtros -->
+      </div>
+    </section>
+
+    <section class="recent-reviews container" aria-labelledby="rev-title">
+      <h2 id="rev-title">Reseñas recientes</h2>
+      <div id="recent-reviews-list">
+        <!-- JS: render últimas reseñas -->
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="current-year"></span> RankingRestaurants. Todos los derechos reservados.</p>
+      <small>API: /api/v1 — Frontend consumiendo REST</small>
+    </div>
+  </footer>
+
+  <script src="components/navbar.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/api.js" defer></script>
+  <script src="js/restaurants.js" defer></script>
+</body>
+</html>
