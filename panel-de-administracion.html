@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Administración - RestauManage</title>
+  <link rel="stylesheet" href="./css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ======= NAVBAR ======= -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="icon">⚙️</span>
+      <h1>Panel de Administración</h1>
+    </div>
+    <a href="listado-de-restaurantes.html" class="btn btn-outline">Volver al Listado</a>
+  </header>
+
+  <!-- ======= CONTENIDO PRINCIPAL ======= -->
+  <main class="main-container">
+    <h2>Gestión de Restaurantes</h2>
+
+    <!-- Formulario para agregar -->
+    <form id="formRestaurante" class="add-form">
+      <input type="text" id="nombre" placeholder="Nombre del restaurante" required />
+      <input type="text" id="descripcion" placeholder="Descripción breve" required />
+      <input type="text" id="imagen" placeholder="URL de imagen" required />
+      <button type="submit" class="btn btn-primary">Agregar Restaurante</button>
+    </form>
+
+    <!-- Tabla -->
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Imagen</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaRestaurantes">
+        <!-- Rellenado con JS -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 RestauManage. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="./js/admin.js"></script>
+</body>
+</html>

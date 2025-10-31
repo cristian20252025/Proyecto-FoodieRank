@@ -1,0 +1,154 @@
+/* ============================
+   LOGIN / REGISTER PAGE STYLES
+   ============================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+}
+
+body {
+  background: #f6f8f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.auth-container {
+  display: flex;
+  width: 90%;
+  max-width: 1000px;
+  height: 600px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== SECCIÓN FORMULARIO ===== */
+.form-container {
+  flex: 1;
+  padding: 40px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-container h1 {
+  color: #2d3748;
+  font-weight: 900;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.toggle-buttons button {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  background: #e6f2ea;
+  color: #2d3748;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.toggle-buttons button.active {
+  background: #38a169;
+  color: white;
+}
+
+.form {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form.active {
+  display: flex;
+}
+
+label {
+  color: #2d3748;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #cfe7d7;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #38a169;
+  outline: none;
+}
+
+.btn-primary {
+  margin-top: 20px;
+  background-color: #38a169;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #2f855a;
+}
+
+.forgot {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: #38a169;
+  text-decoration: none;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}
+
+/* ===== SECCIÓN IMAGEN ===== */
+.image-container {
+  flex: 1;
+  background: #102216;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .auth-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .image-container {
+    display: none;
+  }
+
+  .form-container {
+    padding: 30px;
+  }
+}

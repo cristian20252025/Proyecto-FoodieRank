@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalle del Restaurante - RestauManage</title>
+  <link rel="stylesheet" href="./css/detalle.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ======= NAVBAR ======= -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="icon">🍽️</span>
+      <h1>RestauManage</h1>
+    </div>
+    <a href="listado-de-restaurantes.html" class="btn btn-outline">Volver al Listado</a>
+  </header>
+
+  <!-- ======= CONTENEDOR PRINCIPAL ======= -->
+  <main class="main-container">
+    <div class="restaurant-header">
+      <img id="imagenRestaurante" src="" alt="Imagen del restaurante">
+      <div class="restaurant-info">
+        <h2 id="nombreRestaurante">Nombre del Restaurante</h2>
+        <p id="descripcionRestaurante">Descripción del restaurante y especialidad.</p>
+        <p class="direccion"><strong>Dirección:</strong> <span id="direccionRestaurante">Calle 123 #45-67, Bogotá</span></p>
+        <p class="horario"><strong>Horario:</strong> <span id="horarioRestaurante">Lunes a Domingo: 11:00am - 10:00pm</span></p>
+      </div>
+    </div>
+
+    <!-- Menú del restaurante -->
+    <section class="menu-section">
+      <h3>Menú Destacado</h3>
+      <div id="menuRestaurante" class="menu-grid">
+        <!-- Generado con JS -->
+      </div>
+    </section>
+
+    <!-- Reseñas -->
+    <section class="reviews-section">
+      <h3>Reseñas de Clientes</h3>
+      <div id="reseñasContainer" class="reviews-list">
+        <!-- Generado con JS -->
+      </div>
+
+      <!-- Formulario de nueva reseña -->
+      <form id="reviewForm" class="review-form">
+        <h4>Deja tu Reseña</h4>
+        <input type="text" id="nombreCliente" placeholder="Tu nombre" required />
+        <textarea id="comentarioCliente" placeholder="Escribe tu comentario..." required></textarea>
+        <button type="submit" class="btn btn-primary">Enviar Reseña</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 RestauManage. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="./js/detalle.js"></script>
+</body>
+</html>

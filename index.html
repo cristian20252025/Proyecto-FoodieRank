@@ -1,74 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Inicio - Reseñas y Rankings</title>
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/restaurant.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RestauManage - La gestión de tu restaurante, simplificada</title>
+  <link rel="stylesheet" href="./css/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header id="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand">
-        <img src="assets/img/logo.png" alt="Logo" class="logo" />
-        <span>RankingRestaurants</span>
-      </a>
 
-      <nav id="main-nav" class="nav">
-        <!-- Navbar será renderizado dinámicamente por /components/navbar.js o main.js -->
-        <ul id="nav-list">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="restaurants.html">Restaurantes</a></li>
-          <li id="nav-auth"><a href="login.html">Iniciar sesión</a></li>
-        </ul>
-      </nav>
-      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Abrir menú">☰</button>
+  <!-- ======= NAVBAR ======= -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="icon">🍽️</span>
+      <h1>RestauManage</h1>
     </div>
+    <nav class="nav-links">
+      <a href="#features">Características</a>
+      <a href="#pricing">Precios</a>
+      <a href="#contact">Contacto</a>
+      <div class="buttons">
+        <a href="login-register.html" class="btn btn-outline">Iniciar Sesión</a>
+        <a href="login-register.html" class="btn btn-primary">Registrarse</a>
+      </div>
+    </nav>
+    <button class="menu-toggle">☰</button>
   </header>
 
-  <main id="main">
-    <section class="hero container">
-      <h1>Descubre y califica los mejores restaurantes</h1>
-      <p>Busca por categoría, calificación y lee reseñas reales.</p>
-      <div class="hero-actions">
-        <a class="btn" href="restaurants.html">Ver restaurantes</a>
-        <a class="btn btn-outline" href="register.html">Crear cuenta</a>
-      </div>
-    </section>
-
-    <section class="top-restaurants container" aria-labelledby="top-title">
-      <h2 id="top-title">Top recomendados</h2>
-      <div id="top-list" class="cards-grid">
-        <!-- JS: render top-ranked restaurants aquí (cards) -->
-      </div>
-    </section>
-
-    <section class="categories container" aria-labelledby="cat-title">
-      <h2 id="cat-title">Explorar por categoría</h2>
-      <div id="categories-list" class="chips">
-        <!-- JS: render categorías como chips / filtros -->
-      </div>
-    </section>
-
-    <section class="recent-reviews container" aria-labelledby="rev-title">
-      <h2 id="rev-title">Reseñas recientes</h2>
-      <div id="recent-reviews-list">
-        <!-- JS: render últimas reseñas -->
-      </div>
-    </section>
-  </main>
-
-  <footer id="site-footer" class="site-footer">
-    <div class="container">
-      <p>&copy; <span id="current-year"></span> RankingRestaurants. Todos los derechos reservados.</p>
-      <small>API: /api/v1 — Frontend consumiendo REST</small>
+  <!-- ======= HERO ======= -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>La gestión de tu restaurante, simplificada.</h2>
+      <p>Optimiza pedidos, gestiona tu menú y controla tus finanzas desde una única plataforma.</p>
+      <a href="login-register.html" class="btn btn-primary">Empieza tu Prueba Gratuita</a>
     </div>
+  </section>
+
+  <!-- ======= FEATURES ======= -->
+  <section id="features" class="features">
+    <h2>Todo lo que necesitas para crecer</h2>
+    <p>Nuestra plataforma integra todas las herramientas esenciales para que te concentres en lo que más importa: tus clientes.</p>
+
+    <div class="features-grid">
+      <div class="card">
+        <h3>Gestión de Inventario</h3>
+        <p>Controla tu stock en tiempo real y reduce las mermas.</p>
+      </div>
+      <div class="card">
+        <h3>Punto de Venta</h3>
+        <p>Procesa pagos rápidos y seguros directamente desde la mesa.</p>
+      </div>
+      <div class="card">
+        <h3>Reportes y Analíticas</h3>
+        <p>Toma decisiones inteligentes con datos precisos.</p>
+      </div>
+      <div class="card">
+        <h3>Gestión de Reservas</h3>
+        <p>Organiza tus mesas y evita el overbooking fácilmente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= FOOTER ======= -->
+  <footer class="footer">
+    <p>© 2025 RestauManage. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="components/navbar.js" defer></script>
-  <script src="js/main.js" defer></script>
-  <script src="js/api.js" defer></script>
-  <script src="js/restaurants.js" defer></script>
+  <script src="./js/main.js"></script>
 </body>
 </html>

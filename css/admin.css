@@ -1,49 +1,174 @@
-/* =============================
-   admin.css - Panel de administración
-   ============================= */
+/* ============================
+   PANEL DE ADMINISTRACIÓN
+   ============================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+}
 
-   .admin-panel h1 {
-    color: var(--color-secondary);
-    margin: 2rem 0 1rem;
-    text-align: center;
+body {
+  background: #f7fafc;
+  color: #2d3748;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn-outline {
+  border: 1px solid #38a169;
+  color: #38a169;
+}
+
+.btn-outline:hover {
+  background: #38a169;
+  color: white;
+}
+
+.btn-primary {
+  background: #38a169;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #2f855a;
+}
+
+/* ===== CONTENEDOR ===== */
+.main-container {
+  flex: 1;
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.main-container h2 {
+  text-align: center;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+/* ===== FORMULARIO ===== */
+.add-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.add-form input {
+  flex: 1 1 200px;
+  padding: 10px;
+  border: 1px solid #cfe7d7;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.add-form input:focus {
+  border-color: #38a169;
+  outline: none;
+}
+
+/* ===== TABLA ===== */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.tabla th, .tabla td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tabla th {
+  background: #38a169;
+  color: white;
+  font-weight: 600;
+}
+
+.tabla td img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.acciones button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.acciones button:hover {
+  transform: scale(1.1);
+}
+
+.edit {
+  color: #3182ce;
+}
+
+.delete {
+  color: #e53e3e;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #2d3748;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .add-form {
+    flex-direction: column;
   }
-  
-  .admin-section {
-    margin-bottom: 2rem;
-    background: white;
-    padding: 1.5rem;
-    border-radius: var(--radius);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+  .tabla th:nth-child(3),
+  .tabla td:nth-child(3),
+  .tabla th:nth-child(4),
+  .tabla td:nth-child(4) {
+    display: none;
   }
-  
-  .inline-form {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .inline-form input {
-    flex: 1;
-    padding: 0.6rem;
-    border: 1px solid var(--color-gray);
-    border-radius: var(--radius);
-  }
-  
-  #categories-manage,
-  #pending-restaurants,
-  #users-list {
-    margin-top: 1rem;
-  }
-  
-  .admin-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.6rem 1rem;
-    border-bottom: 1px solid var(--color-gray);
-  }
-  
-  .admin-card button {
-    margin-left: 0.5rem;
-  }
-  
+}

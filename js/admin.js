@@ -1,81 +1,84 @@
-/* =============================
-   admin.js - Panel administrador
-   ============================= */
+// ===============================
+// PANEL ADMIN - CRUD RESTAURANTES
+// ===============================
 
-   import { apiGet, apiPost, apiPut, apiDelete } from "./api.js";
-   import { getToken } from "./auth.js";
-   
-   document.addEventListener("DOMContentLoaded", () => {
-     loadPendingRestaurants();
-     loadCategories();
-   });
-   
-   // Restaurantes pendientes
-   async function loadPendingRestaurants() {
-     const container = document.getElementById("pending-restaurants");
-     try {
-       const data = await apiGet("/restaurants/pending", getToken());
-       if (!data.length) {
-         container.innerHTML = "<p>No hay restaurantes pendientes.</p>";
-         return;
-       }
-       container.innerHTML = data
-         .map(
-           (r) => `
-           <div class="admin-card">
-             <span>${r.name}</span>
-             <div>
-               <button class="btn" onclick="approveRestaurant('${r._id}')">Aprobar</button>
-               <button class="btn btn-outline" onclick="rejectRestaurant('${r._id}')">Rechazar</button>
-             </div>
-           </div>
-         `
-         )
-         .join("");
-     } catch (err) {
-       container.innerHTML = `<p class="form-error">${err.message}</p>`;
-     }
-   }
-   
-   window.approveRestaurant = async (id) => {
-     await apiPut(`/restaurants/${id}/approve`, {}, getToken());
-     loadPendingRestaurants();
-   };
-   
-   window.rejectRestaurant = async (id) => {
-     await apiDelete(`/restaurants/${id}`, getToken());
-     loadPendingRestaurants();
-   };
-   
-   // Categorías
-   async function loadCategories() {
-     const list = document.getElementById("categories-manage");
-     const data = await apiGet("/categories", getToken());
-     list.innerHTML = data
-       .map(
-         (c) => `
-         <div class="admin-card">
-           <span>${c.name}</span>
-           <div>
-             <button class="btn-outline" onclick="deleteCategory('${c._id}')">Eliminar</button>
-           </div>
-         </div>`
-       )
-       .join("");
-   }
-   
-   const form = document.getElementById("category-form");
-   if (form) {
-     form.addEventListener("submit", async (e) => {
-       e.preventDefault();
-       const name = document.getElementById("category-name").value.trim();
-       await apiPost("/categories", { name }, getToken());
-       loadCategories();
-     });
-   }
-   
-   window.deleteCategory = async (id) => {
-     await apiDelete(`/categories/${id}`, getToken());
-     loadCategories();
-   };
-   
+const form = document.getElementById("formRestaurante");
+const tabla = document.getElementById("tablaRestaurantes");
+
+// Datos iniciales simulados
+let restaurantes = [
+  { id: 1, nombre: "La Parrilla de Oro", descripcion: "Carnes a la brasa", imagen: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80" },
+  { id: 2, nombre: "Sabor Italiano", descripcion: "Pizzas y pastas", imagen: "https://images.unsplash.com/photo-1601924572380-526cd06f6588?auto=format&fit=crop&w=800&q=80" }
+];
+
+// Renderizar tabla
+function renderTabla() {
+  tabla.innerHTML = "";
+  restaurantes.forEach((r, index) => {
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${r.nombre}</td>
+      <td>${r.descripcion}</td>
+      <td><img src="${r.imagen}" alt="${r.nombre}"></td>
+      <td class="acciones">
+        <button class="edit" onclick="editar(${r.id})">✏️</button>
+        <button class="delete" onclick="eliminar(${r.id})">🗑️</button>
+      </td>
+    `;
+    tabla.appendChild(fila);
+  });
+}
+
+// Agregar restaurante
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value.trim();
+  const descripcion = document.getElementById("descripcion").value.trim();
+  const imagen = document.getElementById("imagen").value.trim();
+
+  if (!nombre || !descripcion || !imagen) {
+    alert("Completa todos los campos");
+    return;
+  }
+
+  const nuevo = {
+    id: Date.now(),
+    nombre,
+    descripcion,
+    imagen
+  };
+
+  restaurantes.push(nuevo);
+  form.reset();
+  renderTabla();
+  alert("Restaurante agregado exitosamente ✅");
+});
+
+// Editar restaurante
+function editar(id) {
+  const r = restaurantes.find((item) => item.id === id);
+  if (!r) return;
+
+  const nuevoNombre = prompt("Editar nombre:", r.nombre);
+  const nuevaDesc = prompt("Editar descripción:", r.descripcion);
+
+  if (nuevoNombre && nuevaDesc) {
+    r.nombre = nuevoNombre;
+    r.descripcion = nuevaDesc;
+    renderTabla();
+    alert("Restaurante actualizado 👍");
+  }
+}
+
+// Eliminar restaurante
+function eliminar(id) {
+  if (confirm("¿Seguro que deseas eliminar este restaurante?")) {
+    restaurantes = restaurantes.filter((r) => r.id !== id);
+    renderTabla();
+  }
+}
+
+// Inicializar
+renderTabla();

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acceso de Usuario - RestauManage</title>
+  <link rel="stylesheet" href="./css/login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="auth-container">
+    <div class="form-container">
+      <h1>Gestión de Restaurantes</h1>
+
+      <div class="toggle-buttons">
+        <button id="btnRegister" class="active">Registrarse</button>
+        <button id="btnLogin">Iniciar Sesión</button>
+      </div>
+
+      <!-- FORMULARIO DE REGISTRO -->
+      <form id="registerForm" class="form active">
+        <label>Email</label>
+        <input type="email" placeholder="tu@email.com" required />
+
+        <label>Contraseña</label>
+        <input type="password" placeholder="Introduce tu contraseña" required />
+
+        <label>Confirmar Contraseña</label>
+        <input type="password" placeholder="Confirma tu contraseña" required />
+
+        <button type="submit" class="btn-primary">Crear Cuenta</button>
+      </form>
+
+      <!-- FORMULARIO DE LOGIN -->
+      <form id="loginForm" class="form">
+        <label>Email</label>
+        <input type="email" placeholder="tu@email.com" required />
+
+        <label>Contraseña</label>
+        <input type="password" placeholder="Introduce tu contraseña" required />
+
+        <button type="submit" class="btn-primary">Iniciar Sesión</button>
+        <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
+      </form>
+    </div>
+
+    <div class="image-container">
+      <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=900&q=80" alt="restaurante moderno">
+    </div>
+  </div>
+
+  <script src="./js/auth.js"></script>
+</body>
+</html>
