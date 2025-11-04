@@ -1,183 +1,153 @@
-🍴 FoodieRank - Frontend
-📌 Descripción del Proyecto
+# 🍴 FoodieRank – Frontend
 
-El frontend de FoodieRank está desarrollado con HTML, CSS y JavaScript puro, sin frameworks.
-Su objetivo es ofrecer una interfaz moderna, simple y funcional para que los usuarios puedan registrarse, iniciar sesión, explorar restaurantes, crear reseñas y acceder al panel de administración, consumiendo los endpoints del backend en tiempo real.
+## 📖 Descripción del Proyecto
 
-🧱 Tecnologías Utilizadas
+**FoodieRank** es una aplicación web enfocada en la experiencia gastronómica, donde los usuarios pueden **explorar restaurantes, dejar reseñas, calificar platos y gestionar contenido desde un panel administrativo**.
 
-HTML5
+Este **frontend** está construido con **HTML, CSS y JavaScript puro (ES6+)**, ofreciendo una interfaz moderna, ligera y responsiva que se comunica con un backend RESTful mediante **Fetch API**.
 
-CSS3 (Flexbox y Grid)
+---
 
-JavaScript Puro (ES6+)
+## 🧱 Tecnologías Utilizadas
 
-Fetch API para consumir la API REST del backend
+- **HTML5** — Estructura semántica y accesible.  
+- **CSS3 (Flexbox y Grid)** — Diseño adaptable a dispositivos móviles, tabletas y escritorio.  
+- **JavaScript Puro (ES6+)** — Lógica del cliente y consumo de la API.  
+- **Fetch API** — Comunicación con la API REST del backend.  
+- **LocalStorage** — Almacenamiento del token JWT y persistencia de sesión.
 
-LocalStorage para almacenar el token JWT
+---
 
-⚙️ Instalación y Ejecución
-1️⃣ Clonar el repositorio
+## ⚙️ Instalación y Ejecución
+
+### 1️⃣ Clonar el repositorio
+
+```bash
 git clone https://github.com/tu-usuario/frontend_FoodieRank.git
 cd frontend_FoodieRank
-
-2️⃣ Abrir el proyecto
-
-No necesita instalación ni dependencias adicionales.
-Puedes abrir directamente el archivo index.html en tu navegador o usar una extensión como Live Server en VSCode.
+2️⃣ Ejecutar el proyecto
+No requiere dependencias adicionales.
+Abre directamente el archivo index.html en tu navegador o utiliza la extensión Live Server en Visual Studio Code.
+```
 
 🧩 Estructura del Proyecto
+
+```bash
+Copiar código
 frontend_FoodieRank/
 │
 ├── css/
-
-│   ├── main.css
-
-│   ├── login.css
-
-│   ├── register.css
-
-│   ├── restaurant.css
-
-│   └── admin.css
+│   ├── admin.css              # Estilos del panel administrativo
+│   ├── detalle.css            # Estilos de la vista de restaurante
+│   ├── listado.css            # Estilos del listado de restaurantes
+│   ├── login.css              # Estilos de autenticación
+│   └── main.css               # Estilos generales y layout principal
 │
 ├── js/
-
-│   ├── auth.js           # Registro, login y logout
-
-│   ├── restaurants.js    # Listado y detalle de restaurantes
-
-│   ├── reviews.js        # Gestión de reseñas
-
-│   ├── admin.js          # Panel administrativo
-
-│   ├── ui.js             # Funciones de interfaz y renderizado
-
-│   └── utils.js          # Configuración y utilidades generales
+│   ├── admin.js               # Lógica del panel administrativo
+│   ├── api.js                 # Configuración y llamadas a la API
+│   ├── auth.js                # Registro, login y logout
+│   ├── detalle.js             # Detalle y reseñas de restaurante
+│   ├── listado.js             # Listado y filtrado de restaurantes
+│   └── main.js                # Funciones generales e inicialización
 │
-├── pages/
-
-│   ├── index.html        # Página principal
-
-│   ├── login.html
-
-│   ├── register.html
-
-│   ├── restaurant.html   # Detalle de restaurante
-
-│   ├── admin.html        # Panel de administración
-│
-├── assets/
-
-│   ├── logo.png
-
-│   ├── icons/
-
-│   └── images/
+├── detalle-de-restaurante.html   # Página de detalle de restaurante
+├── index.html                    # Página principal
+├── listado-de-restaurantes.html  # Listado general de restaurantes
+├── login-register.html           # Vista de login y registro
+├── panel-de-administracion.html  # Panel de administración
 │
 └── README.md
+```
+## 🔗 Conexión con el Backend
+El proyecto se comunica con el backend mediante una constante global definida en js/api.js:
 
-🔗 Conexión con el Backend
+### js
+Copiar código
+const API_URL = 'http://localhost:4000/api/v1';
+⚠️ Importante: asegúrate de tener el backend de FoodieRank corriendo antes de utilizar el frontend.
 
-El frontend se comunica con la API mediante Fetch API, usando una constante global definida en js/utils.js:
+## 👥 Funcionalidades
+### 👤 Usuarios
+Registro e inicio de sesión con validaciones.
 
-const API_URL = 'http://localhost:3000/api/v1';
+Autenticación mediante JWT.
 
+Cierre de sesión y persistencia con LocalStorage.
 
-Asegúrate de que el backend esté corriendo antes de interactuar con el frontend.
+### 🍽️ Restaurantes
+Listado general y filtrado por categorías.
 
-👥 Funcionalidades
-👤 Usuarios
+Detalle de cada restaurante con información y reseñas.
 
-Registro e inicio de sesión
+Calificaciones y comentarios de usuarios.
 
-Autenticación mediante JWT
+### 📝 Reseñas
+Crear, editar y eliminar reseñas.
 
-Cierre de sesión y persistencia de sesión (LocalStorage)
+Sistema de calificación (1–5 estrellas).
 
-🍽️ Restaurantes
+Likes/dislikes y ranking dinámico.
 
-Listado completo de restaurantes
+### 🧑‍💼 Panel de Administración
+CRUD de restaurantes, categorías y usuarios.
 
-Filtrado por categoría
+Gestión de roles (usuarios / administradores).
 
-Detalle individual con descripción, ubicación, platos y reseñas
+Aprobación o rechazo de nuevos registros.
 
-📝 Reseñas
+### 💅 Diseño y Usabilidad
+Diseño responsive con CSS Grid y Flexbox.
 
-Creación, edición y eliminación de reseñas
+Interfaz moderna y limpia, enfocada en la usabilidad.
 
-Calificación (1–5 estrellas)
+Componentes reutilizables (botones, formularios, tarjetas).
 
-Likes y dislikes en reseñas de otros usuarios
+Feedback visual en validaciones y errores.
 
-Actualización automática del ranking de restaurantes
+Paleta de colores neutra con acentos llamativos.
 
-🧑‍💼 Panel de Administración
+## ⚡ Requerimientos
+Backend de FoodieRank ejecutándose localmente (http://localhost:27017)
 
-CRUD de categorías
+Navegador moderno compatible con ES6+ y Fetch API
 
-Aprobación o rechazo de nuevos restaurantes y platos
+## 🧠 Arquitectura del Frontend
+Carpeta / Archivo	Descripción
+/css/	Estilos separados por vistas y funciones.
+/js/	Lógica modular para cada sección del sistema.
+/index.html	Página principal con acceso a las demás vistas.
+/api.js	Centraliza la conexión con la API REST.
 
-Gestión de usuarios y roles (solo administradores)
+## 📅 Metodología de Trabajo (SCRUM)
+El desarrollo del frontend siguió la metodología SCRUM, coordinado con el equipo de backend.
 
-💅 Diseño y Usabilidad
+### Roles del equipo:
 
-Diseño responsive adaptado a móviles, tablets y escritorio.
+🧑‍🏫 Scrum Master: Michel Rodriguez
 
-Uso de CSS Grid y Flexbox para maquetación fluida.
+👨‍💻 Product Owner: Cristian Perez
 
-Paleta de colores moderna, con componentes reutilizables (botones, tarjetas, formularios).
+Herramientas de gestión: GitHub Projects · Trello · ClickUp
+Documento de planeación: /docs/SCRUM_Plan.pdf (en el repositorio backend)
 
-Feedback visual en errores o validaciones provenientes del backend.
+## 🎥 Video de Presentación
+🔗 [Agregar enlace al video de presentación]
 
-⚡ Requerimientos
-
-Backend de FoodieRank corriendo localmente (http://localhost:3000)
-
-Navegador moderno compatible con ES6 y Fetch API
-
-🧠 Arquitectura del Frontend
-
-El proyecto sigue una arquitectura simple y modular:
-
-pages/: vistas HTML
-
-js/: scripts organizados por funcionalidad
-
-css/: estilos divididos por contexto
-
-utils.js centraliza configuraciones (como URL del backend y funciones comunes)
-
-🧾 SCRUM y Planeación
-
-Este frontend fue desarrollado bajo la metodología SCRUM, en coordinación con el equipo backend.
-
-Roles del equipo:
-
-Scrum Master: [Michel Rodriguez]
-
-Product Owner: [Cristian Perez]
-
-Herramienta de seguimiento: GitHub Projects / Trello / ClickUp
-Documento SCRUM: disponible en el repositorio backend (/docs/SCRUM_Plan.pdf)
-
-🎥 Video de Presentación
-
-🔗 Enlace al video: [Agregar link al video de presentación]
-
-👨‍💻 Créditos
+## 👨‍💻 Créditos
 
 Equipo de desarrollo:
 
-[Michel Rodriguez] – Scrum Master
+-Michel Rodriguez — Scrum Master
 
-[Cristian Perez] – Product Owner
+-Cristian Perez — Product Owner
 
-🏁 Estado del Proyecto
-
+## 🏁 Estado del Proyecto
 ✅ Interfaz completa y funcional
 ✅ Conexión estable con el backend
-✅ Diseño responsivo
-✅ Validaciones de usuario y roles
-✅ Proyecto listo para entrega
+✅ Diseño responsive
+✅ Validaciones implementadas
+✅ Listo para entrega y despliegue
+
+yaml
+Copiar código
