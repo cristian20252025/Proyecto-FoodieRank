@@ -1,207 +1,137 @@
-// ==============================
-// LÓGICA LOGIN / REGISTRO MEJORADA
-// ==============================
+// Importamos la URL de la API y el helper de sesión
+import { API_URL, guardarSesion } from "./api.js";
 
-const btnRegister = document.getElementById('btnRegister');
-const btnLogin = document.getElementById('btnLogin');
-const registerForm = document.getElementById('registerForm');
-const loginForm = document.getElementById('loginForm');
+const btnRegister = document.getElementById("btnRegister");
+const btnLogin = document.getElementById("btnLogin");
+const registerForm = document.getElementById("registerForm");
+const loginForm = document.getElementById("loginForm");
+const mensajeError = document.getElementById("mensajeError");
 
-// ===== ALTERNAR FORMULARIOS CON ANIMACIÓN =====
-btnRegister.addEventListener('click', () => {
-  btnRegister.classList.add('active');
-  btnLogin.classList.remove('active');
-  registerForm.classList.add('active');
-  loginForm.classList.remove('active');
+// ===== ALTERNAR FORMULARIOS =====
+btnRegister.addEventListener("click", () => {
+  btnRegister.classList.add("active");
+  btnLogin.classList.remove("active");
+  registerForm.classList.add("active");
+  loginForm.classList.remove("active");
+  mensajeError.textContent = "";
 });
 
-btnLogin.addEventListener('click', () => {
-  btnLogin.classList.add('active');
-  btnRegister.classList.remove('active');
-  loginForm.classList.add('active');
-  registerForm.classList.remove('active');
+btnLogin.addEventListener("click", () => {
+  btnLogin.classList.add("active");
+  btnRegister.classList.remove("active");
+  loginForm.classList.add("active");
+  registerForm.classList.remove("active");
+  mensajeError.textContent = "";
 });
 
-// ===== VALIDACIÓN DE EMAIL =====
-function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(String(email).toLowerCase());
-}
 
-// ===== VALIDACIÓN DE CONTRASEÑA =====
-function validatePassword(password) {
-  // Mínimo 6 caracteres
-  return password.length >= 6;
-}
-
-// ===== MOSTRAR MENSAJES DE ERROR =====
-function showError(input, message) {
-  const formGroup = input.parentElement;
-  let errorDiv = formGroup.querySelector('.error-message');
-  
-  if (!errorDiv) {
-    errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.style.color = '#e53e3e';
-    errorDiv.style.fontSize = '12px';
-    errorDiv.style.marginTop = '5px';
-    formGroup.appendChild(errorDiv);
-  }
-  
-  errorDiv.textContent = message;
-  input.style.borderColor = '#e53e3e';
-}
-
-// ===== LIMPIAR MENSAJES DE ERROR =====
-function clearError(input) {
-  const formGroup = input.parentElement;
-  const errorDiv = formGroup.querySelector('.error-message');
-  
-  if (errorDiv) {
-    errorDiv.remove();
-  }
-  
-  input.style.borderColor = '#cfe7d7';
-}
-
-// ===== VALIDACIÓN DE REGISTRO =====
-registerForm.addEventListener('submit', (e) => {
+// ===== LÓGICA DE REGISTRO (CONECTADA A LA API) =====
+registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+  mensajeError.textContent = "";
+
+  const nombre = document.getElementById("regNombre").value.trim();
+  const email = document.getElementById("regEmail").value.trim();
+  const password = document.getElementById("regPassword").value.trim();
   
-  const inputs = registerForm.querySelectorAll('input');
-  const email = inputs[0].value.trim();
-  const password = inputs[1].value;
-  const confirmPassword = inputs[2].value;
-  
-  let isValid = true;
-  
-  // Limpiar errores previos
-  inputs.forEach(input => clearError(input));
-  
-  // Validar email
-  if (!email) {
-    showError(inputs[0], 'El email es requerido');
-    isValid = false;
-  } else if (!validateEmail(email)) {
-    showError(inputs[0], 'Email inválido');
-    isValid = false;
+  // Validaciones simples del frontend
+  if (!nombre || !email || !password) {
+    mensajeError.textContent = "Todos los campos son obligatorios.";
+    return;
   }
-  
-  // Validar contraseña
-  if (!password) {
-    showError(inputs[1], 'La contraseña es requerida');
-    isValid = false;
-  } else if (!validatePassword(password)) {
-    showError(inputs[1], 'La contraseña debe tener al menos 6 caracteres');
-    isValid = false;
+  if (password.length < 6) {
+    mensajeError.textContent = "La contraseña debe tener al menos 6 caracteres.";
+    return;
   }
-  
-  // Validar confirmación
-  if (!confirmPassword) {
-    showError(inputs[2], 'Confirma tu contraseña');
-    isValid = false;
-  } else if (password !== confirmPassword) {
-    showError(inputs[2], 'Las contraseñas no coinciden');
-    isValid = false;
-  }
-  
-  if (isValid) {
-    // Simular guardado de usuario
-    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-    
-    // Verificar si el usuario ya existe
-    if (usuarios.some(u => u.email === email)) {
-      showError(inputs[0], 'Este email ya está registrado');
-      return;
+
+  // Deshabilitar botón para evitar doble click
+  const boton = registerForm.querySelector("button");
+  boton.disabled = true;
+  boton.textContent = "Registrando...";
+
+  try {
+    const respuesta = await fetch(`${API_URL}/auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ nombre, email, password }),
+    });
+
+    const data = await respuesta.json();
+
+    if (!respuesta.ok) {
+      // Si la API devuelve un error (ej. 400, 409)
+      throw new Error(data.message || "Error al registrarse.");
     }
-    
-    usuarios.push({ email, password });
-    localStorage.setItem('usuarios', JSON.stringify(usuarios));
-    
-    // Mostrar mensaje de éxito
-    alert('✅ Cuenta creada exitosamente. Ahora puedes iniciar sesión.');
-    
-    // Cambiar a formulario de login
-    btnLogin.click();
+
+    // Éxito
+    alert("✅ ¡Cuenta creada exitosamente! Por favor, inicia sesión.");
+    btnLogin.click(); // Mover al formulario de login
     registerForm.reset();
+
+  } catch (error) {
+    mensajeError.textContent = error.message;
+  } finally {
+    // Reactivar el botón
+    boton.disabled = false;
+    boton.textContent = "Crear Cuenta";
   }
 });
 
-// ===== VALIDACIÓN DE LOGIN =====
-loginForm.addEventListener('submit', (e) => {
+
+// ===== LÓGICA DE LOGIN (CONECTADA A LA API) =====
+loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  
-  const inputs = loginForm.querySelectorAll('input');
-  const email = inputs[0].value.trim();
-  const password = inputs[1].value;
-  
-  let isValid = true;
-  
-  // Limpiar errores previos
-  inputs.forEach(input => clearError(input));
-  
-  // Validar email
-  if (!email) {
-    showError(inputs[0], 'El email es requerido');
-    isValid = false;
-  } else if (!validateEmail(email)) {
-    showError(inputs[0], 'Email inválido');
-    isValid = false;
+  mensajeError.textContent = "";
+
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+
+  if (!email || !password) {
+    mensajeError.textContent = "Email y contraseña son obligatorios.";
+    return;
   }
   
-  // Validar contraseña
-  if (!password) {
-    showError(inputs[1], 'La contraseña es requerida');
-    isValid = false;
-  }
-  
-  if (isValid) {
-    // Verificar credenciales
-    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-    const usuario = usuarios.find(u => u.email === email && u.password === password);
+  const boton = loginForm.querySelector("button");
+  boton.disabled = true;
+  boton.textContent = "Ingresando...";
+
+  try {
+    const respuesta = await fetch(`${API_URL}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
     
-    if (usuario) {
-      // Guardar sesión
-      localStorage.setItem('usuarioActivo', JSON.stringify({ email }));
-      
-      alert('✅ Inicio de sesión exitoso');
-      
-      // Redirigir al listado de restaurantes
-      setTimeout(() => {
-        window.location.href = 'listado-de-restaurantes.html';
-      }, 500);
-    } else {
-      showError(inputs[0], 'Email o contraseña incorrectos');
-      showError(inputs[1], 'Email o contraseña incorrectos');
+    const data = await respuesta.json();
+
+    if (!respuesta.ok) {
+      // Si la API devuelve un error (ej. 401 Credenciales inválidas)
+      throw new Error(data.message || "Error al iniciar sesión.");
     }
+
+    // ¡ÉXITO! Guardamos la sesión
+    guardarSesion(data);
+
+    // Redirigimos al listado de restaurantes
+    window.location.href = "listado-de-restaurantes.html";
+
+  } catch (error) {
+    mensajeError.textContent = error.message;
+  } finally {
+    boton.disabled = false;
+    boton.textContent = "Iniciar Sesión";
   }
 });
 
-// ===== LIMPIAR ERRORES AL ESCRIBIR =====
-document.querySelectorAll('input').forEach(input => {
-  input.addEventListener('input', () => {
-    clearError(input);
-  });
-});
-
-// ===== RECUPERAR CONTRASEÑA =====
-const forgotLink = document.querySelector('.forgot');
+// Manejo simple de "Olvidaste tu contraseña"
+const forgotLink = document.querySelector(".forgot");
 if (forgotLink) {
-  forgotLink.addEventListener('click', (e) => {
+  forgotLink.addEventListener("click", (e) => {
     e.preventDefault();
-    const email = prompt('Ingresa tu email para recuperar tu contraseña:');
-    
-    if (email && validateEmail(email)) {
-      const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-      const usuario = usuarios.find(u => u.email === email);
-      
-      if (usuario) {
-        alert('📧 Se ha enviado un enlace de recuperación a tu email.');
-      } else {
-        alert('❌ No existe una cuenta con ese email.');
-      }
-    } else if (email) {
-      alert('❌ Email inválido.');
-    }
+    alert("Función no implementada. Contacta al administrador.");
   });
 }

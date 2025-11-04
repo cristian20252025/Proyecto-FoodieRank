@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Administración - RestauManage</title>
+  <title>Panel de Administración - FoodieRank</title>
   <link rel="stylesheet" href="./css/admin.css" />
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- ======= NAVBAR ======= -->
   <header class="navbar">
     <div class="logo">
       <span class="icon">⚙️</span>
@@ -18,39 +17,101 @@
     <a href="listado-de-restaurantes.html" class="btn btn-outline">Volver al Listado</a>
   </header>
 
-  <!-- ======= CONTENIDO PRINCIPAL ======= -->
   <main class="main-container">
-    <h2>Gestión de Restaurantes</h2>
 
-    <!-- Formulario para agregar -->
-    <form id="formRestaurante" class="add-form">
-      <input type="text" id="nombre" placeholder="Nombre del restaurante" required />
-      <input type="text" id="descripcion" placeholder="Descripción breve" required />
-      <input type="text" id="imagen" placeholder="URL de imagen" required />
-      <button type="submit" class="btn btn-primary">Agregar Restaurante</button>
-    </form>
+    <div id="loader" class="loader" style="text-align: center; padding: 50px; font-size: 1.2rem; color: #718096;">
+      Cargando panel...
+    </div>
 
-    <!-- Tabla -->
-    <table class="tabla">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Imagen</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="tablaRestaurantes">
-        <!-- Rellenado con JS -->
-      </tbody>
-    </table>
+    <div id="admin-content" style="display: none;">
+
+      <section class="admin-section">
+        <h2>Gestión de Restaurantes</h2>
+        
+        <form id="formRestaurante" class="add-form">
+          <input type="text" id="nombre" placeholder="Nombre del restaurante" required />
+          <input type="text" id="descripcion" placeholder="Descripción breve" required />
+          <input type="text" id="ubicacion" placeholder="Ubicación" required />
+          <input type="text" id="imagen" placeholder="URL de imagen" required />
+          <select id="categoriaSelect" required>
+            <option value="">Cargando categorías...</option>
+          </select>
+          <button type="submit" class="btn btn-primary" id="btnSubmitRestaurante">Agregar Restaurante</button>
+        </form>
+        <div id="formError" style="color: #e53e3e; text-align: center; margin-top: -15px; margin-bottom: 15px;"></div>
+
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Ubicación</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaRestaurantes">
+            </tbody>
+        </table>
+      </section>
+
+      <section class="admin-section">
+        <h2>Gestión de Categorías</h2>
+        
+        <form id="formCategoria" class="add-form">
+          <input type="text" id="categoriaNombre" placeholder="Nombre nueva categoría" required />
+          <input type="text" id="categoriaDescripcion" placeholder="Descripción (opcional)" />
+          <button type="submit" class="btn btn-primary" id="btnSubmitCategoria">Crear Categoría</button>
+        </form>
+        <div id="categoriaError" style="color: #e53e3e; text-align: center; margin-top: -15px; margin-bottom: 15px;"></div>
+
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaCategorias">
+            </tbody>
+        </table>
+      </section>
+
+      <section class="admin-section">
+        <h2>Gestión de Platos</h2>
+        
+        <form id="formPlato" class="add-form">
+          <input type="text" id="platoNombre" placeholder="Nombre del plato" required />
+          <input type="number" id="platoPrecio" placeholder="Precio" required />
+          <select id="platoRestauranteSelect" required>
+            <option value="">-- Selecciona un restaurante --</option>
+          </select>
+          <button type="submit" class="btn btn-primary">Agregar Plato</button>
+        </form>
+        <div id="platoError" style="color: #e53e3e; text-align: center; margin-top: -15px; margin-bottom: 15px;"></div>
+
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Restaurante</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaPlatos">
+            </tbody>
+        </table>
+      </section>
+
+    </div> 
   </main>
 
   <footer class="footer">
-    <p>© 2025 RestauManage. Todos los derechos reservados.</p>
+    <p>© 2025 FoodieRank. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="./js/admin.js"></script>
+  <script src="./js/admin.js" type="module"></script>
 </body>
 </html>

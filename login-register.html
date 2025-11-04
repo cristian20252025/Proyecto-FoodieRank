@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acceso de Usuario - RestauManage</title>
+  <title>Acceso de Usuario - FoodieRank</title>
   <link rel="stylesheet" href="./css/login.css" />
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
@@ -11,34 +11,35 @@
 
   <div class="auth-container">
     <div class="form-container">
-      <h1>Gestión de Restaurantes</h1>
+      <h1>Bienvenido a FoodieRank</h1>
 
       <div class="toggle-buttons">
         <button id="btnRegister" class="active">Registrarse</button>
         <button id="btnLogin">Iniciar Sesión</button>
       </div>
+      
+      <div id="mensajeError" style="color: #e53e3e; text-align: center; margin-bottom: 15px; font-weight: 600;"></div>
 
-      <!-- FORMULARIO DE REGISTRO -->
       <form id="registerForm" class="form active">
+        
+        <label>Nombre Completo</label>
+        <input type="text" id="regNombre" placeholder="Tu nombre y apellido" required />
+
         <label>Email</label>
-        <input type="email" placeholder="tu@email.com" required />
+        <input type="email" id="regEmail" placeholder="tu@email.com" required />
 
-        <label>Contraseña</label>
-        <input type="password" placeholder="Introduce tu contraseña" required />
-
-        <label>Confirmar Contraseña</label>
-        <input type="password" placeholder="Confirma tu contraseña" required />
-
+        <label>Contraseña (mín. 6 caracteres)</label>
+        <input type="password" id="regPassword" placeholder="Introduce tu contraseña" required />
+        
         <button type="submit" class="btn-primary">Crear Cuenta</button>
       </form>
 
-      <!-- FORMULARIO DE LOGIN -->
       <form id="loginForm" class="form">
         <label>Email</label>
-        <input type="email" placeholder="tu@email.com" required />
+        <input type="email" id="loginEmail" placeholder="tu@email.com" required />
 
         <label>Contraseña</label>
-        <input type="password" placeholder="Introduce tu contraseña" required />
+        <input type="password" id="loginPassword" placeholder="Introduce tu contraseña" required />
 
         <button type="submit" class="btn-primary">Iniciar Sesión</button>
         <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
@@ -50,6 +51,6 @@
     </div>
   </div>
 
-  <script src="./js/auth.js"></script>
+  <script type="module" src="./js/auth.js"></script>
 </body>
 </html>

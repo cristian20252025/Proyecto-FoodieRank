@@ -171,3 +171,120 @@ body {
   padding: 20px;
   margin-top: auto;
 }
+
+/* Loader */
+.loader {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #718096;
+  padding: 40px;
+}
+
+/* Layout de 2 columnas */
+.layout-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* A partir de 900px, 2 columnas */
+@media (min-width: 900px) {
+  .layout-container {
+    /* 3/4 para el contenido, 1/4 para la sidebar */
+    grid-template-columns: 3fr 1fr;
+  }
+}
+
+/* Sidebar Widgets */
+.sidebar-widget {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.sidebar-widget h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 10px;
+}
+
+/* Widget de Ranking */
+#rankingList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#rankingList a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #4a5568;
+  font-weight: 500;
+  padding: 5px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+#rankingList a:hover {
+  background-color: #f7fafc;
+}
+
+#rankingList img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+#rankingList .ranking-info {
+  flex: 1;
+}
+
+#rankingList .ranking-info strong {
+  color: #2d3748;
+  font-size: 15px;
+}
+
+#rankingList .ranking-info span {
+  font-size: 13px;
+  color: #38a169;
+  font-weight: 600;
+}
+
+
+/* Widget de Categorías */
+.filtros-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtro-btn {
+  padding: 8px 14px;
+  border: 1px solid #cfe7d7;
+  background: white;
+  color: #38a169;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.filtro-btn:hover {
+  background: #e6f2ea;
+  border-color: #38a169;
+}
+
+.filtro-btn.active {
+  background: #38a169;
+  color: white;
+  border-color: #38a169;
+}
