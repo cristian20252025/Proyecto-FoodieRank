@@ -30,30 +30,49 @@ Puedes abrir directamente el archivo index.html en tu navegador o usar una exten
 frontend_FoodieRank/
 │
 ├── css/
+
 │   ├── main.css
+
 │   ├── login.css
+
 │   ├── register.css
+
 │   ├── restaurant.css
+
 │   └── admin.css
 │
 ├── js/
+
 │   ├── auth.js           # Registro, login y logout
+
 │   ├── restaurants.js    # Listado y detalle de restaurantes
+
 │   ├── reviews.js        # Gestión de reseñas
+
 │   ├── admin.js          # Panel administrativo
+
 │   ├── ui.js             # Funciones de interfaz y renderizado
+
 │   └── utils.js          # Configuración y utilidades generales
 │
 ├── pages/
+
 │   ├── index.html        # Página principal
+
 │   ├── login.html
+
 │   ├── register.html
+
 │   ├── restaurant.html   # Detalle de restaurante
+
 │   ├── admin.html        # Panel de administración
 │
 ├── assets/
+
 │   ├── logo.png
+
 │   ├── icons/
+
 │   └── images/
 │
 └── README.md
